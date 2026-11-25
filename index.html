@@ -4,38 +4,49 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jose Miguel Luna</title>
-  <meta name="description" content="Jose Miguel Luna builds products for everyday life: Adulting, Azetta AI, Moonshine of the Seas, SIVICO, and now Catch.">
+  <meta name="description" content="Jose Miguel Luna builds for real life: Adulting, Azetta AI, Moonshine of the Seas, SIVICO, and now Catch.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Jose Miguel Luna">
-  <meta property="og:description" content="Builder. Currently making Catch, an app for keeping up with friends.">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta property="og:description" content="Builds for real life. Currently making Catch, an app for keeping up with friends.">
+  <meta name="theme-color" content="#f2f2f0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cstyle%3Ecircle%7Bfill:%23111%7D@media(prefers-color-scheme:dark)%7Bcircle%7Bfill:%23eee%7D%7D%3C/style%3E%3Ccircle cx='16' cy='16' r='9'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23F43F5E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #111111;
-      --muted: #6f6f6f;
-      --faint: #a3a3a3;
-      --line: #ebebeb;
-      --hover: #f6f6f6;
-      --live: #16a34a;
+      --bg: #f2f2f0;
+      --card: #ffffff;
+      --text: #0f0f0f;
+      --muted: #6b6b6b;
+      --line: #e4e4e2;
+      --chip: #f2f2f0;
+      --shadow: rgba(0, 0, 0, .22);
+
+      --catch: #F43F5E;
+      --adulting: #16A34A;
+      --azetta: #7C3AED;
+      --moonshine: #0891B2;
+      --sivico: #2563EB;
       color-scheme: light;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0a0a0a;
-        --text: #ededed;
-        --muted: #949494;
-        --faint: #5f5f5f;
-        --line: #1f1f1f;
-        --hover: #141414;
-        --live: #22c55e;
+        --card: #151515;
+        --text: #f2f2f2;
+        --muted: #8f8f8f;
+        --line: #232323;
+        --chip: #1f1f1f;
+        --shadow: rgba(0, 0, 0, .7);
+        --catch: #F43F5E;
+        --adulting: #16A34A;
+        --azetta: #7C3AED;
+        --moonshine: #0891B2;
+        --sivico: #2563EB;
         color-scheme: dark;
       }
     }
@@ -46,97 +57,136 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      font-feature-settings: "cv11", "ss01";
+      font: 400 16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
-    img { display: block; max-width: 100%; }
-    p { margin: 0; }
-    h1, h2 { margin: 0; font-size: inherit; font-weight: 500; }
-    ul { list-style: none; margin: 0; padding: 0; }
     a { color: inherit; text-decoration: none; }
-    :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 4px; }
-    ::selection { background: var(--text); color: var(--bg); }
+    p, h1, h2, h3 { margin: 0; }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+    .display { font-family: "Inter Tight", Inter, sans-serif; font-weight: 600; letter-spacing: -0.035em; line-height: 1; }
 
-    .page {
-      max-width: 620px;
-      margin: 0 auto;
-      padding: clamp(56px, 12vw, 128px) 20px 56px;
+    .page { max-width: 1120px; margin: 0 auto; padding: clamp(16px, 4vw, 48px) clamp(12px, 3vw, 32px) 40px; }
+
+    /* ───── Grid ───── */
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 16px); }
+    .card {
+      position: relative; overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: clamp(20px, 2.4vw, 28px);
+      padding: clamp(20px, 2.4vw, 28px);
+      transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
     }
+    a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -26px var(--shadow); }
+    .span2 { grid-column: span 2; }
 
-    /* Inline text links */
-    .link {
-      color: var(--text);
-      text-decoration: underline;
-      text-decoration-color: var(--faint);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-      transition: text-decoration-color .15s ease;
+    /* ───── Intro ───── */
+    .intro { display: flex; flex-direction: column; justify-content: space-between; gap: 36px; min-height: 420px; }
+    .avatar {
+      width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+      background: linear-gradient(135deg, #e9e9e6, #d4d4d0);
+      display: grid; place-items: center;
+      font: 600 20px "Inter Tight", Inter, sans-serif; letter-spacing: -0.02em; color: #555;
     }
-    .link:hover { text-decoration-color: var(--text); }
+    .intro h1 { font-size: clamp(40px, 5.2vw, 64px); margin-top: 28px; }
+    .intro h1 span { color: var(--muted); }
+    .intro p { color: var(--muted); font-size: 18px; max-width: 36ch; margin-top: 16px; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 999px; background: var(--chip); font-size: 14px; font-weight: 500; white-space: nowrap; }
 
-    /* Header */
-    .header { display: flex; align-items: center; gap: 14px; }
-    .avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; }
-    .header .role { color: var(--muted); }
+    /* ───── Now: Catch ───── */
+    .now { background: var(--catch); color: #fff; border: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 420px; }
+    .now::before { content: ""; position: absolute; width: 520px; height: 520px; right: -180px; top: -200px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .28), transparent); transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+    .now::after { content: ""; position: absolute; width: 420px; height: 420px; left: -160px; bottom: -220px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .18), transparent); }
+    .now:hover::before { transform: translate(-40px, 30px); }
+    .now > * { position: relative; z-index: 1; }
+    .now .chip { background: rgba(255, 255, 255, .18); color: #fff; align-self: flex-start; }
+    .now .live { width: 8px; height: 8px; border-radius: 50%; background: #fff; position: relative; }
+    .now .live::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #fff; animation: ping 2s ease-out infinite; }
+    @keyframes ping { to { transform: scale(2.6); opacity: 0; } }
+    .now h2 { font-size: clamp(72px, 9vw, 120px); letter-spacing: -0.05em; }
+    .now p { font-size: 18px; max-width: 32ch; color: rgba(255, 255, 255, .92); margin-top: 12px; }
+    .now .go { position: absolute; top: clamp(20px, 2.4vw, 28px); right: clamp(20px, 2.4vw, 28px); background: rgba(255, 255, 255, .18); color: #fff; }
 
-    .intro { margin-top: 40px; display: grid; gap: 16px; color: var(--muted); }
-    .intro strong { color: var(--text); font-weight: 500; }
-
-    /* Sections */
-    section { margin-top: 64px; }
-    .label { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
-
-    /* Project list */
-    .projects { border-top: 1px solid var(--line); }
-    .item { border-bottom: 1px solid var(--line); }
-    .item summary {
-      list-style: none;
-      cursor: pointer;
-      display: grid;
-      grid-template-columns: 11rem minmax(0, 1fr) auto;
-      align-items: baseline;
-      gap: 16px;
-      padding: 14px 12px;
-      margin-inline: -12px;
-      border-radius: 8px;
-      transition: background-color .15s ease;
+    /* ───── Projects ───── */
+    .proj { --c: var(--text); display: flex; flex-direction: column; min-height: 260px; }
+    .mono {
+      width: 52px; height: 52px; border-radius: 16px; flex: none;
+      background: var(--c); color: #fff;
+      display: grid; place-items: center;
+      font: 700 21px "Inter Tight", Inter, sans-serif; letter-spacing: -0.03em;
     }
-    .item summary::-webkit-details-marker { display: none; }
-    .item summary:hover { background: var(--hover); }
-    .item .name { font-weight: 500; }
-    .item .oneliner { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .item .meta { color: var(--muted); font-size: 14px; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
-    .item .chev { width: 12px; height: 12px; color: var(--faint); transition: transform .2s ease; }
-    .item[open] .chev { transform: rotate(45deg); }
-    .live { display: inline-flex; align-items: center; gap: 7px; color: var(--text); }
-    .live::before {
-      content: ""; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--live);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--live) 20%, transparent);
+    .proj .tag { margin-top: auto; padding-top: 24px; font-size: 13px; color: var(--muted); }
+    .proj h3 { font-size: clamp(22px, 2.2vw, 26px); margin-top: 6px; }
+    .proj p { color: var(--muted); font-size: 15px; margin-top: 8px; }
+    .go {
+      position: absolute; top: clamp(20px, 2.4vw, 28px); right: clamp(20px, 2.4vw, 28px);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--chip); display: grid; place-items: center;
+      transition: background-color .2s ease, color .2s ease, transform .3s ease;
     }
+    .go svg { width: 14px; height: 14px; }
+    a.card:hover .go { transform: rotate(45deg); }
+    .proj:hover .go { background: var(--c); color: #fff; }
 
-    .detail { padding: 2px 0 22px; display: grid; gap: 14px; color: var(--muted); max-width: 52ch; }
-    .item[open] .detail { animation: reveal .25s ease; }
-    @keyframes reveal { from { opacity: 0; transform: translateY(-4px); } }
-    .detail img { border-radius: 10px; border: 1px solid var(--line); width: 100%; height: auto; max-width: 100%; }
-    .detail .link { align-self: start; justify-self: start; }
+    /* ───── Contact ───── */
+    .contact { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-height: 220px; background: var(--text); color: var(--bg); border: 0; }
+    .contact h2 { font-size: clamp(32px, 4.5vw, 56px); }
+    .contact .btn { align-self: flex-start; display: inline-flex; gap: 8px; padding: 12px 20px; border-radius: 999px; background: var(--bg); color: var(--text); font-weight: 500; transition: transform .2s ease; overflow-wrap: anywhere; }
+    .contact .btn:hover { transform: translateY(-2px); }
+    .social { display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; }
+    .social .sub { color: var(--muted); font-size: 14px; }
+    .social .big { font-size: clamp(22px, 2.4vw, 28px); }
 
-    @media (max-width: 560px) {
-      .item summary { grid-template-columns: minmax(0, 1fr) auto; row-gap: 2px; }
-      .item .oneliner { grid-column: 1 / -1; grid-row: 2; white-space: normal; }
+    footer { margin-top: 28px; padding: 0 8px; color: var(--muted); font-size: 14px; }
+
+    /* ───── Project dialog ───── */
+    dialog {
+      --c: var(--text);
+      width: min(560px, calc(100vw - 24px));
+      max-height: calc(100dvh - 24px);
+      padding: 0; border: 1px solid var(--line); border-radius: 28px;
+      background: var(--card); color: var(--text);
+      box-shadow: 0 40px 80px -30px var(--shadow);
     }
+    dialog::backdrop { background: rgba(10, 10, 10, .45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+    dialog[open] { animation: pop .3s cubic-bezier(.2, .7, .2, 1); }
+    dialog[open]::backdrop { animation: fade .3s ease; }
+    @keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+    @keyframes fade { from { opacity: 0; } }
+    .dlg { padding: clamp(24px, 4vw, 36px); display: grid; gap: 16px; }
+    .dlg-top { display: flex; align-items: center; gap: 14px; }
+    .dlg-top .tag { color: var(--muted); font-size: 14px; }
+    .close {
+      margin-left: auto; width: 36px; height: 36px; border-radius: 50%; border: 0;
+      background: var(--chip); color: var(--text); cursor: pointer; display: grid; place-items: center;
+    }
+    .close svg { width: 14px; height: 14px; }
+    .dlg h2 { font-size: clamp(36px, 6vw, 52px); margin-top: 8px; }
+    .dlg p { color: var(--muted); font-size: 17px; }
+    .dlg .shot { width: 100%; border-radius: 16px; border: 1px solid var(--line); }
+    .dlg .cta { justify-self: start; margin-top: 4px; display: inline-flex; gap: 8px; padding: 12px 20px; border-radius: 999px; background: var(--c); color: #fff; font-weight: 500; }
 
-    /* Contact */
-    .contact { display: flex; flex-wrap: wrap; gap: 8px 24px; }
-    .contact a { color: var(--text); }
-    .contact a .arr { color: var(--faint); transition: color .15s ease; }
-    .contact a:hover .arr { color: var(--text); }
-
-    footer { margin-top: 80px; color: var(--faint); font-size: 14px; }
-
+    /* ───── Responsive ───── */
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .intro, .now, .contact { grid-column: span 2; }
+      .intro, .now { min-height: 0; }
+      .now { min-height: 340px; }
+      .social, .contact { min-height: 0; }
+      .social { gap: 28px; }
+    }
+    @media (max-width: 480px) {
+      .proj { min-height: 210px; }
+      .proj p { font-size: 14px; }
+      .mono { width: 44px; height: 44px; border-radius: 14px; font-size: 18px; }
+      .go { width: 32px; height: 32px; }
+    }
+    @media (max-width: 340px) {
+      .grid { grid-template-columns: 1fr; }
+      .intro, .now, .contact { grid-column: auto; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
@@ -145,118 +195,156 @@
 
 <body>
   <main class="page">
-    <header class="header">
-      <!-- ✏️ PHOTO: add your photo here, e.g. <img class="avatar" src="images/me.jpg" alt="Jose Miguel Luna"> -->
-      <div>
-        <h1>Jose Miguel Luna</h1>
-        <p class="role">Builder</p> <!-- ✏️ EDIT: your title, e.g. Founder, Product engineer -->
+    <div class="grid">
+      <!-- Intro -->
+      <div class="card intro span2">
+        <div>
+          <!-- ✏️ PHOTO: replace this line with <img class="avatar" src="images/me.jpg" alt="Jose Miguel Luna"> -->
+          <div class="avatar" aria-hidden="true">JML</div>
+          <h1 class="display">Jose Miguel Luna <span>builds for real life.</span></h1>
+          <p>Apps for money across the Mexico–US border, civic life, travel and friendship, plus work on AI interpretability.</p>
+        </div>
+        <div class="chips" aria-label="Areas">
+          <span class="chip" role="img" aria-label="Mexico and US">🇲🇽 ⇄ 🇺🇸</span>
+          <span class="chip">Fintech</span>
+          <span class="chip">Civic tech</span>
+          <span class="chip">AI interpretability</span>
+        </div>
       </div>
-    </header>
 
-    <div class="intro">
-      <p>
-        I build products for everyday life: managing money across the Mexico–US border, taking part in civic life,
-        planning trips, and keeping up with friends. I also work on AI interpretability.
-      </p>
-      <p>Right now I'm building <a class="link" href="#catch" data-open="catch">Catch</a>, an app for keeping up with friends.</p>
+      <!-- Now building: Catch -->
+      <a class="card now span2" href="#catch" data-dialog="catch">
+        <span class="chip"><span class="live" aria-hidden="true"></span>Now building</span>
+        <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
+        <div>
+          <h2 class="display">Catch</h2>
+          <p>An app for keeping up with your friendships, so the people who matter don't drift away.</p>
+        </div>
+      </a>
+
+      <!-- Projects -->
+      <a class="card proj" href="#adulting" data-dialog="adulting" style="--c: var(--adulting)">
+        <span class="mono" aria-hidden="true">A</span>
+        <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
+        <span class="tag">Fintech</span>
+        <h3 class="display">Adulting</h3>
+        <p>Personal finance for Mexico–US lives</p>
+      </a>
+      <a class="card proj" href="#azetta" data-dialog="azetta" style="--c: var(--azetta)">
+        <span class="mono" aria-hidden="true">Az</span>
+        <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
+        <span class="tag">Non-profit</span>
+        <h3 class="display">Azetta AI</h3>
+        <p>AI interpretability research</p>
+      </a>
+      <a class="card proj" href="#moonshine" data-dialog="moonshine" style="--c: var(--moonshine)">
+        <span class="mono" aria-hidden="true">M</span>
+        <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
+        <span class="tag">Travel</span>
+        <h3 class="display">Moonshine of the Seas</h3>
+        <p>Gamified trip planning</p>
+      </a>
+      <a class="card proj" href="#sivico" data-dialog="sivico" style="--c: var(--sivico)">
+        <span class="mono" aria-hidden="true">S</span>
+        <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
+        <span class="tag">Civic tech</span>
+        <h3 class="display">SIVICO</h3>
+        <p>Citizen engagement app</p>
+      </a>
+
+      <!-- Contact -->
+      <div class="card contact span2">
+        <h2 class="display">Let's build something, or just catch up.</h2>
+        <!-- ✏️ EDIT: your email (href and text) -->
+        <a class="btn" href="mailto:hello@yourdomain.com">hello@yourdomain.com <span aria-hidden="true">→</span></a>
+      </div>
+      <a class="card social" href="https://github.com/jomilu93" target="_blank" rel="noopener">
+        <span class="sub">GitHub</span>
+        <span class="big display">@jomilu93 ↗</span>
+      </a>
+      <!-- ✏️ EDIT: your LinkedIn URL -->
+      <a class="card social" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <span class="sub">LinkedIn</span>
+        <span class="big display">Connect ↗</span>
+      </a>
     </div>
-
-    <section aria-labelledby="work-label">
-      <h2 class="label" id="work-label">Work</h2>
-
-      <div class="projects">
-        <details class="item" id="catch">
-          <summary>
-            <span class="name">Catch</span>
-            <span class="oneliner">Keep up with your friendships</span>
-            <span class="meta"><span class="live">Building</span><svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 1.5v9M1.5 6h9"/></svg></span>
-          </summary>
-          <div class="detail">
-            <p>Friendships rarely end. They drift. Catch helps you keep track of the people who matter so you stay in touch. It's in development now.</p>
-            <!-- ✏️ IMAGE: <img src="images/catch.png" alt="Catch app screenshot"> -->
-            <!-- ✏️ EDIT: your email, or a waitlist link -->
-            <a class="link" href="mailto:hello@yourdomain.com?subject=Catch">Get early access</a>
-          </div>
-        </details>
-
-        <details class="item" id="adulting">
-          <summary>
-            <span class="name">Adulting</span>
-            <span class="oneliner">Personal finance for Mexico–US lives</span>
-            <span class="meta">Fintech<svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 1.5v9M1.5 6h9"/></svg></span>
-          </summary>
-          <div class="detail">
-            <p>A personal finance app for people whose lives span Mexico and the US, with two countries, two currencies and two banking systems to keep straight.</p>
-            <!-- ✏️ IMAGE: <img src="images/adulting.png" alt="Adulting app screenshot"> -->
-            <!-- ✏️ LINK:  <a class="link" href="https://…">Visit Adulting</a> -->
-          </div>
-        </details>
-
-        <details class="item" id="azetta">
-          <summary>
-            <span class="name">Azetta AI</span>
-            <span class="oneliner">AI interpretability non-profit</span>
-            <span class="meta">Non-profit<svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 1.5v9M1.5 6h9"/></svg></span>
-          </summary>
-          <div class="detail">
-            <p>A non-profit working on AI interpretability: understanding what actually happens inside AI models.</p>
-            <!-- ✏️ IMAGE: <img src="images/azetta.png" alt="Azetta AI"> -->
-            <!-- ✏️ LINK:  <a class="link" href="https://…">Visit Azetta AI</a> -->
-          </div>
-        </details>
-
-        <details class="item" id="moonshine">
-          <summary>
-            <span class="name">Moonshine of the Seas</span>
-            <span class="oneliner">Gamified trip planning</span>
-            <span class="meta">Travel<svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 1.5v9M1.5 6h9"/></svg></span>
-          </summary>
-          <div class="detail">
-            <p>A trip-planning tool that turns the to-dos and decisions of planning a trip into a game.</p>
-            <!-- ✏️ IMAGE: <img src="images/moonshine.png" alt="Moonshine of the Seas screenshot"> -->
-            <!-- ✏️ LINK:  <a class="link" href="https://…">See the project</a> -->
-          </div>
-        </details>
-
-        <details class="item" id="sivico">
-          <summary>
-            <span class="name">SIVICO</span>
-            <span class="oneliner">Citizen engagement app</span>
-            <span class="meta">Civic tech<svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 1.5v9M1.5 6h9"/></svg></span>
-          </summary>
-          <div class="detail">
-            <p>An app that makes it easier for citizens to stay informed and take part in the civic life of their communities.</p>
-            <!-- ✏️ IMAGE: <img src="images/sivico.png" alt="SIVICO app screenshot"> -->
-            <!-- ✏️ LINK:  <a class="link" href="https://…">Visit SIVICO</a> -->
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <section aria-labelledby="contact-label">
-      <h2 class="label" id="contact-label">Contact</h2>
-      <ul class="contact">
-        <!-- ✏️ EDIT: your email and LinkedIn URL -->
-        <li><a href="mailto:hello@yourdomain.com">Email <span class="arr" aria-hidden="true">↗</span></a></li>
-        <li><a href="https://github.com/jomilu93" target="_blank" rel="noopener">GitHub <span class="arr" aria-hidden="true">↗</span></a></li>
-        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn <span class="arr" aria-hidden="true">↗</span></a></li>
-      </ul>
-    </section>
 
     <footer>© <span id="year">2026</span> Jose Miguel Luna</footer>
   </main>
 
+  <!-- ───── Project details (open when a card is clicked) ───── -->
+  <dialog id="catch" style="--c: var(--catch)" aria-labelledby="catch-t">
+    <div class="dlg">
+      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">C</span><span class="tag">Now building</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <h2 class="display" id="catch-t">Catch</h2>
+      <p>Friendships rarely end. They drift. Catch helps you keep track of the people who matter so you stay in touch. It's in development now.</p>
+      <!-- ✏️ IMAGE: <img class="shot" src="images/catch.png" alt="Catch app screenshot"> -->
+      <!-- ✏️ EDIT: your email, or a waitlist link -->
+      <a class="cta" href="mailto:hello@yourdomain.com?subject=Catch">Get early access <span aria-hidden="true">→</span></a>
+    </div>
+  </dialog>
+
+  <dialog id="adulting" style="--c: var(--adulting)" aria-labelledby="adulting-t">
+    <div class="dlg">
+      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">A</span><span class="tag">Fintech</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <h2 class="display" id="adulting-t">Adulting</h2>
+      <p>A personal finance app for people whose lives span Mexico and the US, with two countries, two currencies and two banking systems to keep straight.</p>
+      <!-- ✏️ IMAGE: <img class="shot" src="images/adulting.png" alt="Adulting app screenshot"> -->
+      <!-- ✏️ LINK:  <a class="cta" href="https://…">Visit Adulting <span aria-hidden="true">→</span></a> -->
+    </div>
+  </dialog>
+
+  <dialog id="azetta" style="--c: var(--azetta)" aria-labelledby="azetta-t">
+    <div class="dlg">
+      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">Az</span><span class="tag">Non-profit</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <h2 class="display" id="azetta-t">Azetta AI</h2>
+      <p>A non-profit working on AI interpretability: understanding what actually happens inside AI models, so the systems shaping our lives aren't black boxes.</p>
+      <!-- ✏️ IMAGE: <img class="shot" src="images/azetta.png" alt="Azetta AI"> -->
+      <!-- ✏️ LINK:  <a class="cta" href="https://…">Visit Azetta AI <span aria-hidden="true">→</span></a> -->
+    </div>
+  </dialog>
+
+  <dialog id="moonshine" style="--c: var(--moonshine)" aria-labelledby="moonshine-t">
+    <div class="dlg">
+      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">M</span><span class="tag">Travel</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <h2 class="display" id="moonshine-t">Moonshine of the Seas</h2>
+      <p>A trip-planning tool that turns the to-dos and decisions of planning a trip into a game.</p>
+      <!-- ✏️ IMAGE: <img class="shot" src="images/moonshine.png" alt="Moonshine of the Seas screenshot"> -->
+      <!-- ✏️ LINK:  <a class="cta" href="https://…">See the project <span aria-hidden="true">→</span></a> -->
+    </div>
+  </dialog>
+
+  <dialog id="sivico" style="--c: var(--sivico)" aria-labelledby="sivico-t">
+    <div class="dlg">
+      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">S</span><span class="tag">Civic tech</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <h2 class="display" id="sivico-t">SIVICO</h2>
+      <p>An app that makes it easier for citizens to stay informed and take part in the civic life of their communities.</p>
+      <!-- ✏️ IMAGE: <img class="shot" src="images/sivico.png" alt="SIVICO app screenshot"> -->
+      <!-- ✏️ LINK:  <a class="cta" href="https://…">Visit SIVICO <span aria-hidden="true">→</span></a> -->
+    </div>
+  </dialog>
+
   <script>
-    // Open a project row when linked to it (e.g. the "Catch" link, or /#adulting)
-    function openFromHash(id) {
-      var el = id && document.getElementById(id);
-      if (el && el.tagName === 'DETAILS') el.open = true;
-    }
-    document.querySelectorAll('[data-open]').forEach(function (a) {
-      a.addEventListener('click', function () { openFromHash(a.getAttribute('data-open')); });
-    });
-    openFromHash(location.hash.slice(1));
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function () {
+      function open(id) {
+        var d = document.getElementById(id);
+        if (!d || d.tagName !== 'DIALOG' || d.open) return;
+        if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+        if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+      }
+      document.querySelectorAll('[data-dialog]').forEach(function (a) {
+        a.addEventListener('click', function (e) { e.preventDefault(); open(a.getAttribute('data-dialog')); });
+      });
+      document.querySelectorAll('dialog').forEach(function (d) {
+        d.querySelector('.close').addEventListener('click', function () { d.close(); });
+        // Click on the dimmed backdrop closes it
+        d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+        d.addEventListener('close', function () { history.replaceState(null, '', location.pathname + location.search); });
+      });
+      // Deep links like /#adulting open that project
+      if (location.hash) open(location.hash.slice(1));
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
   </script>
 </body>
 </html>

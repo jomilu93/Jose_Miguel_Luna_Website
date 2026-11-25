@@ -1,8 +1,8 @@
 # Jose Miguel Luna: personal website
 
-A minimal, single-page site: a short intro, a list of projects (Catch, Adulting, Azetta AI, Moonshine of the Seas, SIVICO) where each row expands for detail, and contact links.
+A one-page "bento" layout: an intro card, a big **Now building: Catch** card, one card each for Adulting, Azetta AI, Moonshine of the Seas and SIVICO, plus contact cards. Clicking a project card opens a panel with more detail. Links like `/#adulting` open that panel directly.
 
-It's one file (`index.html`) with no build step. The only external dependency is the Inter font from Google Fonts. Dark mode follows the system setting.
+It's one file (`index.html`) with no build step. The only external dependency is Google Fonts (Inter, Inter Tight). Dark mode follows the system setting.
 
 ## Preview locally
 
@@ -14,11 +14,12 @@ python3 -m http.server 8000   # then open http://localhost:8000
 
 Search `index.html` for `✏️`:
 
-- [ ] **Email**: replace `hello@yourdomain.com` (contact list and Catch's "Get early access").
+- [ ] **Email**: replace `hello@yourdomain.com` (contact card and Catch's "Get early access").
 - [ ] **LinkedIn** URL.
-- [ ] **Title** under your name (currently "Builder").
-- [ ] **Photo**: put it in `images/` and uncomment the `<img class="avatar">` line in the header.
-- [ ] **Screenshots and links**: each project has commented-out `<img>` and link lines inside its expanded section. Put images in `images/` and uncomment them.
+- [ ] **Photo**: put it in `images/` and swap the `JML` initials circle for the `<img class="avatar">` line.
+- [ ] **Screenshots and links**: each project's panel (the `<dialog>` elements at the bottom) has commented-out `<img class="shot">` and link lines. Put images in `images/` and uncomment them.
+
+Project colors are the `--catch`, `--adulting`, `--azetta`, `--moonshine` and `--sivico` tokens at the top of the `<style>` block.
 
 ## Deploy
 
