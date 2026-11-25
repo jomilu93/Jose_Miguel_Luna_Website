@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jose Miguel Luna</title>
-  <meta name="description" content="Jose Miguel Luna. Projects: Catch, Adulting, Azetta AI, Moonshine of the Seas and SIVICO.">
+  <meta name="description" content="Jose Miguel Luna. Projects: Catch App, Adulting, Azetta AI, Moonshine of the Seas and SIVICO.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Jose Miguel Luna">
-  <meta property="og:description" content="Currently working on Catch, an app for keeping up with friends.">
+  <meta property="og:description" content="Currently working on Catch App, for keeping up with friends.">
   <meta name="theme-color" content="#f2f2f0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23F43F5E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
@@ -95,8 +95,8 @@
     .chips { display: flex; gap: 8px; flex-wrap: wrap; }
     .chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 999px; background: var(--chip); font-size: 14px; font-weight: 500; white-space: nowrap; }
 
-    /* ───── Now: Catch ───── */
-    .now { background: var(--catch); color: #fff; border: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 420px; }
+    /* ───── Now: Catch App ───── */
+    .now { container-type: inline-size; background: var(--catch); color: #fff; border: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 420px; }
     .now::before { content: ""; position: absolute; width: 520px; height: 520px; right: -180px; top: -200px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .28), transparent); transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
     .now::after { content: ""; position: absolute; width: 420px; height: 420px; left: -160px; bottom: -220px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .18), transparent); }
     .now:hover::before { transform: translate(-40px, 30px); }
@@ -105,7 +105,7 @@
     .now .live { width: 8px; height: 8px; border-radius: 50%; background: #fff; position: relative; }
     .now .live::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #fff; animation: ping 2s ease-out infinite; }
     @keyframes ping { to { transform: scale(2.6); opacity: 0; } }
-    .now h2 { font-size: clamp(72px, 9vw, 120px); letter-spacing: -0.05em; }
+    .now h2 { font-size: clamp(56px, 7.4vw, 100px); font-size: clamp(52px, 19cqi, 120px); letter-spacing: -0.05em; white-space: nowrap; }
     .now p { font-size: 18px; max-width: 32ch; color: rgba(255, 255, 255, .92); margin-top: 12px; }
     .now .go { position: absolute; top: clamp(20px, 2.4vw, 28px); right: clamp(20px, 2.4vw, 28px); background: rgba(255, 255, 255, .18); color: #fff; }
 
@@ -132,10 +132,10 @@
 
     /* ───── Contact ───── */
     .contact, .social { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-height: 220px; }
-    .contact { background: var(--text); color: var(--bg); border: 0; }
+    .contact { container-type: inline-size; background: var(--text); color: var(--bg); border: 0; }
     .contact .sub, .social .sub { color: var(--muted); font-size: 14px; }
     .contact .sub { color: color-mix(in srgb, var(--bg) 60%, var(--text)); }
-    .contact .big { font-size: clamp(26px, 3.4vw, 40px); overflow-wrap: anywhere; }
+    .contact .big { font-size: clamp(20px, 3vw, 36px); font-size: clamp(18px, 7.6cqi, 40px); white-space: nowrap; }
     .social .big { font-size: clamp(22px, 2.4vw, 28px); }
 
     footer { margin-top: 28px; padding: 0 8px; color: var(--muted); font-size: 14px; }
@@ -200,7 +200,7 @@
           <!-- ✏️ PHOTO: replace this line with <img class="avatar" src="images/me.jpg" alt="Jose Miguel Luna"> -->
           <div class="avatar" aria-hidden="true">JML</div>
           <h1 class="display">Jose Miguel Luna</h1>
-          <p>I build software products. Currently working on Catch, an app for keeping up with friends. Other projects span fintech, civic tech, travel and AI interpretability.</p>
+          <p>I build software products. Currently working on Catch App, for keeping up with friends. Other projects span fintech, civic tech, travel and AI interpretability.</p>
         </div>
         <div class="chips" aria-label="Areas">
           <span class="chip" role="img" aria-label="Mexico and US">🇲🇽 ⇄ 🇺🇸</span>
@@ -210,12 +210,12 @@
         </div>
       </div>
 
-      <!-- Now building: Catch -->
+      <!-- Now building: Catch App -->
       <a class="card now span2" href="#catch" data-dialog="catch">
         <span class="chip"><span class="live" aria-hidden="true"></span>Now building</span>
         <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
         <div>
-          <h2 class="display">Catch</h2>
+          <h2 class="display">Catch App</h2>
           <p>An app for keeping track of your friendships.</p>
         </div>
       </a>
@@ -252,9 +252,9 @@
 
       <!-- Contact -->
       <!-- ✏️ EDIT: your email (href and text) -->
-      <a class="card contact span2" href="mailto:hello@yourdomain.com">
+      <a class="card contact span2" href="mailto:jmlunamugica@mac.com">
         <span class="sub">Email</span>
-        <span class="big display">hello@yourdomain.com ↗</span>
+        <span class="big display">jmlunamugica@mac.com ↗</span>
       </a>
       <a class="card social" href="https://github.com/jomilu93" target="_blank" rel="noopener">
         <span class="sub">GitHub</span>
@@ -274,11 +274,11 @@
   <dialog id="catch" style="--c: var(--catch)" aria-labelledby="catch-t">
     <div class="dlg">
       <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">C</span><span class="tag">Now building</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
-      <h2 class="display" id="catch-t">Catch</h2>
+      <h2 class="display" id="catch-t">Catch App</h2>
       <p>An app for keeping track of your friendships and staying in touch with people. In development.</p>
-      <!-- ✏️ IMAGE: <img class="shot" src="images/catch.png" alt="Catch app screenshot"> -->
+      <!-- ✏️ IMAGE: <img class="shot" src="images/catch.png" alt="Catch App screenshot"> -->
       <!-- ✏️ EDIT: your email, or a waitlist link -->
-      <a class="cta" href="mailto:hello@yourdomain.com?subject=Catch">Get early access <span aria-hidden="true">→</span></a>
+      <a class="cta" href="mailto:jmlunamugica@mac.com?subject=Catch%20App">Get early access <span aria-hidden="true">→</span></a>
     </div>
   </dialog>
 

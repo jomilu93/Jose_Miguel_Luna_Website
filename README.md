@@ -1,6 +1,6 @@
 # Jose Miguel Luna: personal website
 
-A one-page "bento" layout: an intro card, a big **Now building: Catch** card, one card each for Adulting, Azetta AI, Moonshine of the Seas and SIVICO, plus contact cards. Clicking a project card opens a panel with more detail. Links like `/#adulting` open that panel directly.
+A one-page "bento" layout: an intro card, a big **Now building: Catch App** card, one card each for Adulting, Azetta AI, Moonshine of the Seas and SIVICO, plus contact cards. Clicking a project card opens a panel with more detail. Links like `/#adulting` open that panel directly.
 
 It's one file (`index.html`) with no build step. The only external dependency is Google Fonts (Inter, Inter Tight). Dark mode follows the system setting.
 
@@ -14,7 +14,6 @@ python3 -m http.server 8000   # then open http://localhost:8000
 
 Search `index.html` for `✏️`:
 
-- [ ] **Email**: replace `hello@yourdomain.com` (contact card and Catch's "Get early access").
 - [ ] **LinkedIn** URL.
 - [ ] **Photo**: put it in `images/` and swap the `JML` initials circle for the `<img class="avatar">` line.
 - [ ] **Screenshots and links**: each project's panel (the `<dialog>` elements at the bottom) has commented-out `<img class="shot">` and link lines. Put images in `images/` and uncomment them.
