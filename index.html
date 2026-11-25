@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ✏️ EDIT: replace "Jose Miguel Luna" everywhere on this page (title, meta tags, nav, hero, footer). -->
+  <title>Jose Miguel Luna · Builder</title>
+  <meta name="description" content="Jose Miguel Luna builds software for the messy, meaningful parts of life: cross-border personal finance, AI interpretability, gamified travel, civic tech, and friendship.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jose Miguel Luna · Builder">
+  <meta property="og:description" content="Software for the messy, meaningful parts of life. Adulting, Azetta AI, Moonshine of the Seas, SIVICO, and now Catch.">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#F5F1EA">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23E07B1F' stroke-width='2' stroke-opacity='.45'/%3E%3Ccircle cx='16' cy='16' r='6.5' fill='%23E07B1F'/%3E%3Ccircle cx='26.5' cy='9.5' r='3.5' fill='%231C1A17'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <script>
+    // Apply the saved/system theme before first paint to avoid a flash.
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      if (saved === 'light' || saved === 'dark') d.setAttribute('data-theme', saved);
+    })();
+  </script>
+
+  <style>
+    /* ───────────── Tokens ───────────── */
+    :root {
+      --bg: #F5F1EA;
+      --surface: #FFFDF9;
+      --surface-2: #ECE6DB;
+      --ink: #1A1916;
+      --ink-2: #47443D;
+      --muted: #6B665D;
+      --line: #E0D9CC;
+      --accent: #C2601A;
+
+      --adulting: #2E7D57;
+      --azetta: #5A48D6;
+      --moonshine: #1D6A9E;
+      --sivico: #C24A34;
+      --catch: #E07B1F;
+
+      --feature-bg: #1C1A17;
+      --feature-ink: #F3EFE8;
+      --feature-muted: #A8A196;
+      --feature-line: rgba(243, 239, 232, .14);
+
+      --radius: 22px;
+      --maxw: 1160px;
+      --gutter: clamp(16px, 4vw, 40px);
+      --serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+      --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #121110;
+        --surface: #1A1917;
+        --surface-2: #24221F;
+        --ink: #F3EFE8;
+        --ink-2: #CFC9BE;
+        --muted: #9E988D;
+        --line: #2E2B27;
+        --accent: #F2973F;
+        --adulting: #52B98A;
+        --azetta: #9284F7;
+        --moonshine: #55A8DE;
+        --sivico: #F0765F;
+        --catch: #F59A3F;
+        --feature-bg: #1F1D1A;
+        --feature-line: rgba(243, 239, 232, .12);
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #121110;
+      --surface: #1A1917;
+      --surface-2: #24221F;
+      --ink: #F3EFE8;
+      --ink-2: #CFC9BE;
+      --muted: #9E988D;
+      --line: #2E2B27;
+      --accent: #F2973F;
+      --adulting: #52B98A;
+      --azetta: #9284F7;
+      --moonshine: #55A8DE;
+      --sivico: #F0765F;
+      --catch: #F59A3F;
+      --feature-bg: #1F1D1A;
+      --feature-line: rgba(243, 239, 232, .12);
+      color-scheme: dark;
+    }
+
+    /* ───────────── Base ───────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: clip;
+      transition: background-color .3s ease, color .3s ease;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    h1, h2, h3 { margin: 0; font-weight: 400; }
+    p { margin: 0; }
+    ::selection { background: color-mix(in srgb, var(--catch) 35%, transparent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+    main { overflow-x: clip; }
+    .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+
+    .skip {
+      position: absolute; left: 16px; top: -60px; z-index: 100;
+      background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .kicker .num { color: var(--accent); }
+    .kicker::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.25rem, 1.4rem + 3.2vw, 4rem);
+      line-height: 1.04;
+      letter-spacing: -.01em;
+      margin-top: 20px;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* ───────────── Buttons ───────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font: 500 16px/1 var(--sans);
+      text-decoration: none;
+      transition: transform .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn .arrow { transition: transform .2s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+    .btn-primary { background: var(--ink); color: var(--bg); }
+    .btn-ghost { border-color: var(--line); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    /* ───────────── Nav ───────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s ease, background-color .3s ease;
+    }
+    .nav.scrolled { border-bottom-color: var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-weight: 600; font-size: 16px; letter-spacing: -.01em;
+      text-decoration: none; white-space: nowrap;
+    }
+    .brand-mark { width: 24px; height: 24px; flex: none; }
+    .nav-right { display: flex; align-items: center; gap: 6px; }
+    .nav-links { display: flex; gap: 2px; }
+    .nav-links a {
+      padding: 8px 13px; border-radius: 999px;
+      color: var(--ink-2); text-decoration: none; font-size: 15px;
+      transition: background-color .2s ease, color .2s ease;
+    }
+    .nav-links a:hover { background: var(--surface-2); color: var(--ink); }
+    .theme-toggle {
+      width: 40px; height: 40px; border-radius: 999px;
+      border: 1px solid var(--line); background: transparent; color: var(--ink);
+      display: grid; place-items: center; cursor: pointer;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .theme-toggle:hover { border-color: var(--ink); }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .theme-toggle .i-sun { display: none; }
+    :root[data-theme="dark"] .theme-toggle .i-sun { display: block; }
+    :root[data-theme="dark"] .theme-toggle .i-moon { display: none; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle .i-sun { display: block; }
+      :root:not([data-theme="light"]) .theme-toggle .i-moon { display: none; }
+    }
+    @media (max-width: 640px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+    @media (max-width: 359px) {
+      .nav-links { display: none; }
+    }
+
+    /* ───────────── Hero ───────────── */
+    .hero { position: relative; padding-block: clamp(48px, 9vw, 112px) clamp(56px, 8vw, 96px); }
+    .hero::before {
+      content: ""; position: absolute; z-index: -1; pointer-events: none;
+      width: min(720px, 90vw); aspect-ratio: 1; right: -12%; top: -18%;
+      background: radial-gradient(closest-side,
+        color-mix(in srgb, var(--catch) 15%, transparent) 0%,
+        color-mix(in srgb, var(--catch) 10%, transparent) 30%,
+        color-mix(in srgb, var(--catch) 5%, transparent) 58%,
+        color-mix(in srgb, var(--catch) 1.5%, transparent) 82%,
+        transparent 100%);
+    }
+    .now-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 7px 14px 7px 10px;
+      border: 1px solid var(--line); border-radius: 999px;
+      background: var(--surface);
+      font-size: 14px; color: var(--ink-2); text-decoration: none;
+      transition: border-color .2s ease;
+    }
+    .now-pill:hover { border-color: var(--catch); }
+    .now-pill strong { color: var(--ink); font-weight: 600; }
+    .pulse { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--catch); flex: none; }
+    .pulse::after {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: var(--catch); animation: ping 2s cubic-bezier(0, 0, .2, 1) infinite;
+    }
+    @keyframes ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 1.3rem + 6.6vw, 7rem);
+      line-height: .98;
+      letter-spacing: -.02em;
+      margin-top: 32px;
+      max-width: 17ch;
+      text-wrap: balance;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-foot {
+      display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 40px; align-items: end; margin-top: clamp(32px, 5vw, 56px);
+    }
+    .lede { font-size: clamp(1.1rem, 1rem + .45vw, 1.3rem); line-height: 1.55; color: var(--ink-2); max-width: 40ch; }
+    .lede strong { color: var(--ink); font-weight: 600; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+    @media (max-width: 860px) {
+      .hero-foot { grid-template-columns: 1fr; gap: 28px; }
+      .hero-actions { justify-content: flex-start; }
+    }
+
+    .index {
+      list-style: none; margin: clamp(48px, 7vw, 80px) 0 0; padding: 20px 0 0;
+      border-top: 1px solid var(--line);
+      display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center;
+    }
+    .index-label { font-family: var(--mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+    .index a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 13px; border-radius: 999px; border: 1px solid var(--line);
+      font-size: 14px; text-decoration: none; color: var(--ink-2);
+      transition: border-color .2s ease, color .2s ease;
+    }
+    .index a:hover { border-color: var(--c); color: var(--ink); }
+    .swatch { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
+
+    /* ───────────── Sections ───────────── */
+    .section { padding-block: clamp(56px, 8vw, 104px); }
+    .section + .section { padding-top: 0; }
+    .section-head { margin-bottom: clamp(32px, 5vw, 56px); }
+    .section-head p.sub { margin-top: 16px; color: var(--ink-2); max-width: 52ch; font-size: 1.075rem; }
+
+    /* ───────────── Feature: Catch ───────────── */
+    .feature {
+      position: relative; overflow: hidden;
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: clamp(28px, 4vw, 64px); align-items: center;
+      padding: clamp(28px, 5vw, 64px);
+      border-radius: 30px;
+      background: var(--feature-bg); color: var(--feature-ink);
+      border: 1px solid var(--feature-line);
+    }
+    .feature::before {
+      content: ""; position: absolute; pointer-events: none;
+      width: 70%; aspect-ratio: 1; right: -15%; top: 50%; translate: 0 -50%;
+      background: radial-gradient(closest-side, rgba(245, 154, 63, .22), transparent);
+    }
+    .feature > * { position: relative; }
+    .status {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px 6px 11px; border-radius: 999px;
+      border: 1px solid var(--feature-line);
+      font-family: var(--mono); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--feature-muted);
+    }
+    .feature-title {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 2rem + 7vw, 7.5rem);
+      line-height: .9; letter-spacing: -.02em;
+      margin-top: 24px;
+    }
+    .feature-title em { font-style: italic; color: #F59A3F; }
+    .feature-sub { font-size: clamp(1.15rem, 1rem + .5vw, 1.4rem); margin-top: 14px; color: var(--feature-ink); }
+    .feature-copy p.body { margin-top: 18px; color: var(--feature-muted); max-width: 46ch; }
+    .feature .btn { margin-top: 32px; background: #F59A3F; color: #1C1A17; }
+    .feature .btn:hover { background: #F8AC5F; }
+    .feature-art { width: 100%; max-width: 460px; margin-inline: auto; aspect-ratio: 1; }
+    .feature-art svg { width: 100%; height: 100%; overflow: visible; }
+    .orbit { transform-box: view-box; transform-origin: 200px 200px; animation: spin var(--dur, 60s) linear infinite; }
+    .orbit.o1 { --dur: 48s; }
+    .orbit.o2 { --dur: 80s; animation-direction: reverse; }
+    .orbit.o3 { --dur: 130s; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 860px) {
+      .feature { grid-template-columns: 1fr; }
+      .feature-art { max-width: 360px; order: -1; }
+    }
+
+    /* ───────────── Projects ───────────── */
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); }
+    @media (max-width: 760px) { .projects { grid-template-columns: 1fr; } }
+    .project {
+      --art-bg: color-mix(in oklab, var(--c) 9%, var(--surface));
+      display: flex; flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .35s cubic-bezier(.2, .7, .2, 1), border-color .25s ease, box-shadow .35s ease;
+    }
+    .project:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in oklab, var(--c) 45%, var(--line));
+      box-shadow: 0 24px 48px -28px color-mix(in srgb, var(--c) 55%, transparent);
+    }
+    .project-art {
+      aspect-ratio: 16 / 10;
+      background: var(--art-bg);
+      color: var(--c);
+      display: grid; place-items: center;
+      border-bottom: 1px solid var(--line);
+      padding: 4% 6%;
+    }
+    .project-art svg { width: 100%; height: 100%; }
+    .art-label { font: 500 12px var(--mono); letter-spacing: .08em; fill: currentColor; }
+    .project-body { padding: clamp(22px, 3vw, 32px); display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .project-tag { font-family: var(--mono); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--c); }
+    .project h3 { font-family: var(--serif); font-size: clamp(2rem, 1.5rem + 1.4vw, 2.6rem); line-height: 1; letter-spacing: -.01em; }
+    .project p.desc { color: var(--ink-2); }
+    .project-link {
+      margin-top: auto; padding-top: 8px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 500; font-size: 15px; text-decoration: none; color: var(--ink);
+    }
+    .project-link:hover { color: var(--c); }
+
+    /* Card art comes alive on hover */
+    .anim { animation-play-state: paused !important; }
+    .project:hover .anim, .project:focus-within .anim { animation-play-state: running !important; }
+    .flow { stroke-dasharray: 3 8; animation: march 1.2s linear infinite; }
+    @keyframes march { to { stroke-dashoffset: -22; } }
+    .signal { stroke-dasharray: 26 380; stroke-dashoffset: 26; animation: signal 2.4s cubic-bezier(.5, 0, .5, 1) infinite; }
+    @keyframes signal { from { stroke-dashoffset: 26; } to { stroke-dashoffset: -380; } }
+    .waves { animation: drift 3s linear infinite; }
+    @keyframes drift { to { transform: translateX(-32px); } }
+    .route { stroke-dasharray: 2 8; animation: march 1.4s linear infinite; }
+    .bob { transform-box: fill-box; animation: bob 2.6s ease-in-out infinite; }
+    .bob.d2 { animation-delay: -1.3s; }
+    @keyframes bob { 50% { transform: translateY(-6px); } }
+
+    /* ───────────── About ───────────── */
+    .about { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.4fr); gap: clamp(32px, 6vw, 96px); }
+    @media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
+    .about-copy { display: grid; gap: 22px; }
+    .about-copy p { font-size: clamp(1.05rem, 1rem + .25vw, 1.2rem); color: var(--ink-2); max-width: 58ch; }
+    .about-copy p.lead {
+      font-family: var(--serif); color: var(--ink);
+      font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem); line-height: 1.15; letter-spacing: -.01em;
+    }
+    .threads { list-style: none; padding: 0; margin: 20px 0 0; border-top: 1px solid var(--line); }
+    .threads li {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 0; border-bottom: 1px solid var(--line);
+      font-size: 1.05rem;
+    }
+    .threads .swatch { width: 10px; height: 10px; }
+    @media (max-width: 480px) { .threads .proj { display: none; } }
+    .threads .proj { margin-left: auto; font-family: var(--mono); font-size: 12.5px; letter-spacing: .04em; color: var(--muted); text-align: right; }
+
+    /* ───────────── Contact ───────────── */
+    .contact { text-align: left; }
+    .contact h2 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 1.4rem + 6.4vw, 7rem);
+      line-height: .98; letter-spacing: -.02em;
+      margin-top: 24px; max-width: 16ch; text-wrap: balance;
+    }
+    .contact h2 em { font-style: italic; color: var(--accent); }
+    .contact-row { display: flex; flex-wrap: wrap; gap: 24px 40px; align-items: center; justify-content: space-between; margin-top: clamp(32px, 5vw, 56px); }
+    .mail {
+      font-family: var(--serif); font-size: clamp(1.6rem, 1.1rem + 2vw, 2.75rem);
+      text-decoration: none; letter-spacing: -.01em;
+      background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat;
+      transition: background-size .35s ease;
+      padding-bottom: 2px; overflow-wrap: anywhere;
+    }
+    .mail:hover { background-size: 100% 1.5px; }
+    .socials { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    /* ───────────── Footer ───────────── */
+    .footer { border-top: 1px solid var(--line); padding-block: 28px 40px; }
+    .footer-inner { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+    .footer a { text-decoration: none; }
+    .footer a:hover { color: var(--ink); }
+
+    /* ───────────── Reveal on scroll ───────────── */
+    .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ───────────── Nav ───────────── -->
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Jose Miguel Luna, home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="13" fill="none" stroke="var(--catch)" stroke-width="2" stroke-opacity=".45"/>
+          <circle cx="16" cy="16" r="6.5" fill="var(--catch)"/>
+          <circle cx="26.5" cy="9.5" r="3.5" fill="var(--ink)"/>
+        </svg>
+        Jose Miguel Luna
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#now">Now</a>
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact" class="nav-cta">Contact</a>
+        </nav>
+        <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to dark theme">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ───────────── Hero ───────────── -->
+    <section class="hero wrap" id="top">
+      <a class="now-pill reveal" href="#now">
+        <span class="pulse" aria-hidden="true"></span>
+        <span>Now building <strong>Catch</strong>, an app for keeping up with friends</span>
+      </a>
+
+      <h1 class="reveal">I build software for the <em>messy, meaningful</em> parts of life.</h1>
+
+      <div class="hero-foot reveal">
+        <!-- ✏️ EDIT: your one-line intro -->
+        <p class="lede">
+          Hola, I'm <strong>Jose Miguel Luna</strong>. I make things for money that crosses borders, communities that want a voice,
+          trips worth planning and friends worth keeping. I also care a lot about AI we can actually understand.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">See my work <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#contact">Say hello</a>
+        </div>
+      </div>
+
+      <ul class="index reveal" aria-label="Projects">
+        <li class="index-label">Projects</li>
+        <li><a href="#adulting" style="--c: var(--adulting)"><span class="swatch"></span>Adulting</a></li>
+        <li><a href="#azetta" style="--c: var(--azetta)"><span class="swatch"></span>Azetta AI</a></li>
+        <li><a href="#moonshine" style="--c: var(--moonshine)"><span class="swatch"></span>Moonshine of the Seas</a></li>
+        <li><a href="#sivico" style="--c: var(--sivico)"><span class="swatch"></span>SIVICO</a></li>
+        <li><a href="#now" style="--c: var(--catch)"><span class="swatch"></span>Catch <span style="color: var(--muted)">(now)</span></a></li>
+      </ul>
+    </section>
+
+    <!-- ───────────── Now: Catch ───────────── -->
+    <section class="section wrap" id="now" aria-labelledby="now-title">
+      <div class="section-head reveal">
+        <p class="kicker"><span class="num">01</span> Now building</p>
+      </div>
+
+      <article class="feature reveal">
+        <div class="feature-copy">
+          <span class="status"><span class="pulse" aria-hidden="true"></span>In progress</span>
+          <h2 class="feature-title" id="now-title">Catch<em>.</em></h2>
+          <p class="feature-sub">An app for keeping up with your friendships.</p>
+          <p class="body">
+            Friendships rarely end. They drift. Life gets busy, months go by, and people you care about
+            quietly slip out of orbit. Catch helps you keep track of your friendships so you stay close to the
+            people who matter, before "we should catch up" turns into "it's been years."
+          </p>
+          <!-- ✏️ EDIT: point this at a waitlist or landing page when you have one -->
+          <a class="btn" href="mailto:hello@yourdomain.com?subject=Catch%20early%20access">Want early access? Get in touch <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="feature-art" aria-hidden="true">
+          <svg viewBox="0 0 400 400" fill="none">
+            <circle cx="200" cy="200" r="72" stroke="var(--feature-line)" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="124" stroke="var(--feature-line)" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="176" stroke="var(--feature-line)" stroke-width="1.5" stroke-dasharray="3 7"/>
+
+            <g class="orbit o3">
+              <circle cx="288" cy="352.4" r="7" fill="var(--feature-muted)" opacity=".45"/>
+              <circle cx="34.6" cy="139.8" r="7" fill="var(--feature-muted)" opacity=".45"/>
+              <circle cx="324.5" cy="75.5" r="7" fill="var(--feature-muted)" opacity=".7"/>
+              <path d="M316 84 L298 102" stroke="#F59A3F" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 4"/>
+              <path d="M304.8 100.2 L298 102 L299.8 95.2" stroke="#F59A3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g class="orbit o2">
+              <circle cx="316.5" cy="242.4" r="16" fill="#55A8DE" opacity=".18"/>
+              <circle cx="316.5" cy="242.4" r="9" fill="#55A8DE"/>
+              <circle cx="92.6" cy="262" r="16" fill="#F0765F" opacity=".18"/>
+              <circle cx="92.6" cy="262" r="9" fill="#F0765F"/>
+              <circle cx="178.5" cy="77.9" r="16" fill="#52B98A" opacity=".18"/>
+              <circle cx="178.5" cy="77.9" r="9" fill="#52B98A"/>
+            </g>
+            <g class="orbit o1">
+              <circle cx="255.2" cy="153.7" r="19" fill="#9284F7" opacity=".2"/>
+              <circle cx="255.2" cy="153.7" r="11" fill="#9284F7"/>
+              <circle cx="144.8" cy="246.3" r="19" fill="#F5C26B" opacity=".2"/>
+              <circle cx="144.8" cy="246.3" r="11" fill="#F5C26B"/>
+            </g>
+
+            <circle cx="200" cy="200" r="46" fill="#F59A3F" opacity=".14"/>
+            <circle cx="200" cy="200" r="30" fill="#F59A3F"/>
+            <text x="200" y="201" text-anchor="middle" dominant-baseline="middle" font-family="Geist Mono, ui-monospace, monospace" font-size="13" font-weight="500" fill="#1C1A17">you</text>
+          </svg>
+        </div>
+      </article>
+    </section>
+
+    <!-- ───────────── Work ───────────── -->
+    <section class="section wrap" id="work" aria-labelledby="work-title">
+      <div class="section-head reveal">
+        <p class="kicker"><span class="num">02</span> Selected work</p>
+        <h2 class="section-title" id="work-title">Things I've <em>built</em>.</h2>
+        <p class="sub">Four very different problems, one habit: find where everyday life gets complicated and build something that makes it lighter.</p>
+      </div>
+
+      <div class="projects">
+        <!-- Adulting -->
+        <article class="project reveal" id="adulting" style="--c: var(--adulting)">
+          <div class="project-art" aria-hidden="true">
+            <svg viewBox="0 0 320 200" fill="none">
+              <line x1="160" y1="22" x2="160" y2="182" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="4 6"/>
+              <text x="28" y="40" class="art-label" opacity=".75">MXN</text>
+              <text x="292" y="40" class="art-label" text-anchor="end" opacity=".75">USD</text>
+              <path d="M56 136 C 110 60, 210 60, 262 122" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M260.3 112.1 L262 122 L252.6 118.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="flow anim" d="M262 150 C 210 188, 110 188, 62 162" stroke="currentColor" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+              <path d="M66.7 169.7 L62 162 L71 161.8" stroke="currentColor" stroke-opacity=".55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="48" cy="150" r="17" fill="currentColor"/>
+              <circle cx="48" cy="150" r="11" stroke="var(--art-bg)" stroke-width="1.5"/>
+              <text x="48" y="151" text-anchor="middle" dominant-baseline="middle" font-family="Geist, sans-serif" font-weight="600" font-size="12" fill="var(--art-bg)">$</text>
+              <circle cx="272" cy="136" r="17" fill="currentColor"/>
+              <circle cx="272" cy="136" r="11" stroke="var(--art-bg)" stroke-width="1.5"/>
+              <text x="272" y="137" text-anchor="middle" dominant-baseline="middle" font-family="Geist, sans-serif" font-weight="600" font-size="12" fill="var(--art-bg)">$</text>
+            </svg>
+          </div>
+          <div class="project-body">
+            <p class="project-tag">Fintech · Mexico ⇄ US</p>
+            <h3>Adulting</h3>
+            <p class="desc">
+              A personal finance app for people whose lives span Mexico and the US. Two countries can mean two currencies,
+              two banking systems and twice the paperwork. Adulting is built to make money across the border make sense.
+            </p>
+            <!-- ✏️ EDIT: add a link when you have one, e.g.
+            <a class="project-link" href="https://…">Visit Adulting <span aria-hidden="true">→</span></a> -->
+          </div>
+        </article>
+
+        <!-- Azetta AI -->
+        <article class="project reveal" id="azetta" style="--c: var(--azetta)">
+          <div class="project-art" aria-hidden="true">
+            <svg viewBox="0 0 320 200" fill="none">
+              <g stroke="currentColor" stroke-opacity=".14" stroke-width="1">
+                <line x1="52" y1="64" x2="124" y2="32"/><line x1="52" y1="64" x2="124" y2="66"/><line x1="52" y1="64" x2="124" y2="100"/><line x1="52" y1="64" x2="124" y2="134"/><line x1="52" y1="64" x2="124" y2="168"/><line x1="52" y1="100" x2="124" y2="32"/><line x1="52" y1="100" x2="124" y2="66"/><line x1="52" y1="100" x2="124" y2="100"/><line x1="52" y1="100" x2="124" y2="134"/><line x1="52" y1="100" x2="124" y2="168"/><line x1="52" y1="136" x2="124" y2="32"/><line x1="52" y1="136" x2="124" y2="66"/><line x1="52" y1="136" x2="124" y2="100"/><line x1="52" y1="136" x2="124" y2="134"/><line x1="52" y1="136" x2="124" y2="168"/><line x1="124" y1="32" x2="196" y2="32"/><line x1="124" y1="32" x2="196" y2="66"/><line x1="124" y1="32" x2="196" y2="100"/><line x1="124" y1="32" x2="196" y2="134"/><line x1="124" y1="32" x2="196" y2="168"/><line x1="124" y1="66" x2="196" y2="32"/><line x1="124" y1="66" x2="196" y2="66"/><line x1="124" y1="66" x2="196" y2="100"/><line x1="124" y1="66" x2="196" y2="134"/><line x1="124" y1="66" x2="196" y2="168"/><line x1="124" y1="100" x2="196" y2="32"/><line x1="124" y1="100" x2="196" y2="66"/><line x1="124" y1="100" x2="196" y2="100"/><line x1="124" y1="100" x2="196" y2="134"/><line x1="124" y1="100" x2="196" y2="168"/><line x1="124" y1="134" x2="196" y2="32"/><line x1="124" y1="134" x2="196" y2="66"/><line x1="124" y1="134" x2="196" y2="100"/><line x1="124" y1="134" x2="196" y2="134"/><line x1="124" y1="134" x2="196" y2="168"/><line x1="124" y1="168" x2="196" y2="32"/><line x1="124" y1="168" x2="196" y2="66"/><line x1="124" y1="168" x2="196" y2="100"/><line x1="124" y1="168" x2="196" y2="134"/><line x1="124" y1="168" x2="196" y2="168"/><line x1="196" y1="32" x2="268" y2="64"/><line x1="196" y1="32" x2="268" y2="100"/><line x1="196" y1="32" x2="268" y2="136"/><line x1="196" y1="66" x2="268" y2="64"/><line x1="196" y1="66" x2="268" y2="100"/><line x1="196" y1="66" x2="268" y2="136"/><line x1="196" y1="100" x2="268" y2="64"/><line x1="196" y1="100" x2="268" y2="100"/><line x1="196" y1="100" x2="268" y2="136"/><line x1="196" y1="134" x2="268" y2="64"/><line x1="196" y1="134" x2="268" y2="100"/><line x1="196" y1="134" x2="268" y2="136"/><line x1="196" y1="168" x2="268" y2="64"/><line x1="196" y1="168" x2="268" y2="100"/><line x1="196" y1="168" x2="268" y2="136"/>
+              </g>
+              <path d="M52 100 L124 66 L196 134 L268 100" stroke="currentColor" stroke-opacity=".18" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M52 100 L124 66 L196 134 L268 100" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="signal anim" d="M52 100 L124 66 L196 134 L268 100" stroke="var(--surface)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <g fill="var(--art-bg)" stroke="currentColor" stroke-opacity=".5" stroke-width="1.5">
+                <circle cx="52" cy="64" r="6"/><circle cx="52" cy="136" r="6"/><circle cx="124" cy="32" r="6"/><circle cx="124" cy="100" r="6"/><circle cx="124" cy="134" r="6"/><circle cx="124" cy="168" r="6"/><circle cx="196" cy="32" r="6"/><circle cx="196" cy="66" r="6"/><circle cx="196" cy="100" r="6"/><circle cx="196" cy="168" r="6"/><circle cx="268" cy="64" r="6"/><circle cx="268" cy="136" r="6"/>
+              </g>
+              <g fill="currentColor">
+                <circle cx="52" cy="100" r="7.5"/><circle cx="124" cy="66" r="7.5"/><circle cx="196" cy="134" r="7.5"/><circle cx="268" cy="100" r="7.5"/>
+              </g>
+              <circle cx="196" cy="134" r="21" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M211 149 L228 166" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <p class="project-tag">AI interpretability · Non-profit</p>
+            <h3>Azetta AI</h3>
+            <p class="desc">
+              A non-profit focused on AI interpretability: understanding what's actually happening inside AI models.
+              The systems starting to shape our lives shouldn't be black boxes, and making them legible is how we learn to trust them.
+            </p>
+            <!-- ✏️ EDIT: <a class="project-link" href="https://…">Visit Azetta AI <span aria-hidden="true">→</span></a> -->
+          </div>
+        </article>
+
+        <!-- Moonshine of the Seas -->
+        <article class="project reveal" id="moonshine" style="--c: var(--moonshine)">
+          <div class="project-art" aria-hidden="true">
+            <svg viewBox="0 0 320 200" fill="none">
+              <defs>
+                <mask id="moon-cut">
+                  <rect width="320" height="200" fill="#fff"/>
+                  <circle cx="69" cy="38" r="18" fill="#000"/>
+                </mask>
+                <clipPath id="sea-clip"><rect x="0" y="0" width="320" height="200"/></clipPath>
+              </defs>
+              <circle cx="58" cy="46" r="20" fill="currentColor" mask="url(#moon-cut)"/>
+              <g fill="currentColor" opacity=".55">
+                <circle cx="112" cy="30" r="1.8"/><circle cx="148" cy="54" r="1.4"/><circle cx="98" cy="72" r="1.3"/><circle cx="182" cy="28" r="1.4"/>
+              </g>
+              <text x="208" y="32" class="art-label" opacity=".75">XP</text>
+              <rect x="230" y="24" width="68" height="8" rx="4" stroke="currentColor" stroke-opacity=".4" stroke-width="1.2"/>
+              <rect x="230" y="24" width="44" height="8" rx="4" fill="currentColor"/>
+
+              <path class="route anim" d="M48 156 C 90 116, 120 166, 150 128 S 220 80, 262 86" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <g>
+                <circle cx="48" cy="156" r="11" fill="currentColor"/>
+                <circle cx="150" cy="128" r="11" fill="currentColor"/>
+                <circle cx="262" cy="86" r="11" fill="var(--art-bg)" stroke="currentColor" stroke-width="2"/>
+                <g font-family="Geist Mono, monospace" font-size="11" font-weight="500" text-anchor="middle" dominant-baseline="middle">
+                  <text x="48" y="157" fill="var(--art-bg)">1</text>
+                  <text x="150" y="129" fill="var(--art-bg)">2</text>
+                  <text x="262" y="87" fill="currentColor">3</text>
+                </g>
+              </g>
+              <path d="M262 75 V50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M262 50 L284 57 L262 64 Z" fill="currentColor"/>
+
+              <g clip-path="url(#sea-clip)">
+                <path class="waves anim" d="M0 180 q 16 -8 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+                <path class="waves anim" d="M-16 192 q 16 -8 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0 t 32 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".35"/>
+              </g>
+            </svg>
+          </div>
+          <div class="project-body">
+            <p class="project-tag">Travel · Gamified planning</p>
+            <h3>Moonshine of the Seas</h3>
+            <p class="desc">
+              A gamified trip-planning tool. It turns the to-dos, decisions and logistics of planning a trip into a game
+              people actually want to play, so the planning becomes part of the adventure.
+            </p>
+            <!-- ✏️ EDIT: <a class="project-link" href="https://…">See the project <span aria-hidden="true">→</span></a> -->
+          </div>
+        </article>
+
+        <!-- SIVICO -->
+        <article class="project reveal" id="sivico" style="--c: var(--sivico)">
+          <div class="project-art" aria-hidden="true">
+            <svg viewBox="0 0 320 200" fill="none">
+              <line x1="18" y1="178" x2="302" y2="178" stroke="currentColor" stroke-opacity=".25" stroke-width="1.5"/>
+              <!-- civic building -->
+              <path d="M110 86 L160 56 L210 86 Z" fill="currentColor" fill-opacity=".16" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <rect x="110" y="86" width="100" height="8" rx="1.5" fill="currentColor"/>
+              <g fill="currentColor" fill-opacity=".6">
+                <rect x="120" y="98" width="8" height="38" rx="1.5"/>
+                <rect x="144" y="98" width="8" height="38" rx="1.5"/>
+                <rect x="168" y="98" width="8" height="38" rx="1.5"/>
+                <rect x="192" y="98" width="8" height="38" rx="1.5"/>
+              </g>
+              <rect x="106" y="138" width="108" height="8" rx="2" fill="currentColor"/>
+              <rect x="98" y="148" width="124" height="6" rx="2" fill="currentColor" fill-opacity=".45"/>
+              <!-- people -->
+              <g fill="currentColor">
+                <circle cx="44" cy="152" r="7"/><path d="M32 178 A 12 12 0 0 1 56 178 Z"/>
+                <circle cx="276" cy="152" r="7"/><path d="M264 178 A 12 12 0 0 1 288 178 Z"/>
+              </g>
+              <g fill="currentColor" fill-opacity=".55">
+                <circle cx="74" cy="156" r="6"/><path d="M64 178 A 10 10 0 0 1 84 178 Z"/>
+                <circle cx="246" cy="156" r="6"/><path d="M236 178 A 10 10 0 0 1 256 178 Z"/>
+              </g>
+              <!-- speech bubbles -->
+              <g class="bob anim">
+                <rect x="24" y="88" width="60" height="30" rx="10" fill="currentColor"/>
+                <path d="M38 116 L34 130 L50 116 Z" fill="currentColor"/>
+                <rect x="35" y="98" width="38" height="4" rx="2" fill="var(--art-bg)"/>
+                <rect x="35" y="106" width="24" height="4" rx="2" fill="var(--art-bg)"/>
+              </g>
+              <g class="bob d2 anim">
+                <rect x="236" y="80" width="62" height="32" rx="10" fill="currentColor" fill-opacity=".55"/>
+                <path d="M282 110 L288 124 L270 110 Z" fill="currentColor" fill-opacity=".55"/>
+                <rect x="247" y="91" width="40" height="4" rx="2" fill="var(--art-bg)"/>
+                <rect x="247" y="99" width="26" height="4" rx="2" fill="var(--art-bg)"/>
+              </g>
+              <g class="bob anim">
+                <rect x="252" y="34" width="34" height="24" rx="9" stroke="currentColor" stroke-width="2"/>
+                <path d="M261 46 L266 51 L277 40" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="project-body">
+            <p class="project-tag">Civic tech · Citizen engagement</p>
+            <h3>SIVICO</h3>
+            <p class="desc">
+              A citizen engagement app that makes it easier for people to take part in the civic life of their communities:
+              to stay informed, be heard and participate, without having to fight the process to do it.
+            </p>
+            <!-- ✏️ EDIT: <a class="project-link" href="https://…">Visit SIVICO <span aria-hidden="true">→</span></a> -->
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ───────────── About ───────────── -->
+    <section class="section wrap" id="about" aria-labelledby="about-title">
+      <div class="section-head reveal">
+        <p class="kicker"><span class="num">03</span> About</p>
+      </div>
+      <div class="about">
+        <h2 class="section-title reveal" id="about-title" style="margin-top: 0">A little <em>about</em> me.</h2>
+        <div class="about-copy reveal">
+          <!-- ✏️ EDIT: make this sound like you. Add where you're based, your background, what you're looking for. -->
+          <p class="lead">I'm drawn to the places where everyday life gets complicated, and where good software can make it a little lighter.</p>
+          <p>
+            My projects have taken me from cross-border personal finance to civic participation, from making trip planning
+            fun to helping people understand how AI works. Different domains, same question: how do you build tools that
+            actually show up for people?
+          </p>
+          <p>
+            Right now I'm focused on Catch, because the people in our lives are the most important thing we have to keep track of.
+          </p>
+
+          <ul class="threads" aria-label="Threads that run through my work">
+            <li><span class="swatch" style="--c: var(--adulting)"></span>Life across borders<span class="proj">Adulting</span></li>
+            <li><span class="swatch" style="--c: var(--azetta)"></span>Making AI understandable<span class="proj">Azetta AI</span></li>
+            <li><span class="swatch" style="--c: var(--moonshine)"></span>Play as a design tool<span class="proj">Moonshine of the Seas</span></li>
+            <li><span class="swatch" style="--c: var(--sivico)"></span>Giving citizens a voice<span class="proj">SIVICO</span></li>
+            <li><span class="swatch" style="--c: var(--catch)"></span>Staying close to people<span class="proj">Catch</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── Contact ───────────── -->
+    <section class="section wrap contact" id="contact" aria-labelledby="contact-title">
+      <div class="reveal">
+        <p class="kicker"><span class="num">04</span> Contact</p>
+        <h2 id="contact-title">Let's build something, or just <em>catch up</em>.</h2>
+      </div>
+      <div class="contact-row reveal">
+        <!-- ✏️ EDIT: your email (both the href and the text) -->
+        <a class="mail" href="mailto:hello@yourdomain.com">hello@yourdomain.com</a>
+        <div class="socials">
+          <a class="btn btn-ghost" href="https://github.com/jomilu93" target="_blank" rel="noopener">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+          <!-- ✏️ EDIT: your LinkedIn URL -->
+          <a class="btn btn-ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© <span id="year">2026</span> Jose Miguel Luna</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById('themeToggle');
+      var meta = document.querySelector('meta[name="theme-color"]');
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function current() {
+        var t = root.getAttribute('data-theme');
+        return t ? t : (mq.matches ? 'dark' : 'light');
+      }
+      function sync() {
+        var t = current();
+        toggle.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+        if (meta) meta.setAttribute('content', t === 'dark' ? '#121110' : '#F5F1EA');
+      }
+      toggle.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        sync();
+      });
+      if (mq.addEventListener) mq.addEventListener('change', sync);
+      sync();
+
+      // Border under the nav once you scroll
+      var nav = document.getElementById('nav');
+      function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Reveal on scroll
+      var items = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        items.forEach(function (el) { io.observe(el); });
+      } else {
+        items.forEach(function (el) { el.classList.add('in'); });
+      }
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
