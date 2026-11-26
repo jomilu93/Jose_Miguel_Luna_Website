@@ -14,7 +14,6 @@ python3 -m http.server 8000   # then open http://localhost:8000
 
 Search `index.html` for `✏️`:
 
-- [ ] **LinkedIn** URL.
 - [ ] **Screenshots and links**: each project's panel (the `<dialog>` elements at the bottom) has commented-out `<img class="shot">` and link lines. Put images in `images/` and uncomment them.
 
 Project colors are the `--catch`, `--adulting`, `--azetta`, `--moonshine` and `--sivico` tokens at the top of the `<style>` block.
