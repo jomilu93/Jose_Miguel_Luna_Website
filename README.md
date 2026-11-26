@@ -1,6 +1,6 @@
 # Jose Miguel L: personal website
 
-A one-page "bento" layout: a full-width intro (photo, name, description), a row of product cards (Catch App, Adulting, Moonshine of the Seas), a row of research cards (Azetta AI, SLAY), and contact cards. Clicking a project card opens a panel with more detail. Links like `/#adulting` open that panel directly.
+A one-page "bento" layout: a full-width intro (photo, name, description), a row of research cards (SLAY, Azetta AI), a row of product cards (Adulting, Moonshine of the Seas, Catch App), and contact cards. Clicking a project card opens a panel with more detail. Links like `/#adulting` open that panel directly.
 
 It's one file (`index.html`) with no build step. The only external dependency is Google Fonts (Inter, Inter Tight). Dark mode follows the system setting.
 
