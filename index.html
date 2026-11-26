@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jose Miguel Luna</title>
-  <meta name="description" content="Jose Miguel Luna. Projects: Catch App, Adulting, Azetta AI, Moonshine of the Seas and SIVICO.">
+  <title>Jose Miguel L</title>
+  <meta name="description" content="Jose Miguel L. Currently building AI products at Apple. Projects: Catch App, Adulting, Moonshine of the Seas, Azetta AI and SLAY.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Jose Miguel Luna">
-  <meta property="og:description" content="Currently working on Catch App, for keeping up with friends.">
+  <meta property="og:title" content="Jose Miguel L">
+  <meta property="og:description" content="Currently building AI products at Apple, plus side projects and research.">
   <meta name="theme-color" content="#f2f2f0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23F43F5E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
@@ -28,9 +28,9 @@
 
       --catch: #F43F5E;
       --adulting: #16A34A;
-      --azetta: #7C3AED;
       --moonshine: #0891B2;
-      --sivico: #2563EB;
+      --azetta: #7C3AED;
+      --slay: #2563EB;
       color-scheme: light;
     }
     @media (prefers-color-scheme: dark) {
@@ -42,11 +42,6 @@
         --line: #232323;
         --chip: #1f1f1f;
         --shadow: rgba(0, 0, 0, .7);
-        --catch: #F43F5E;
-        --adulting: #16A34A;
-        --azetta: #7C3AED;
-        --moonshine: #0891B2;
-        --sivico: #2563EB;
         color-scheme: dark;
       }
     }
@@ -68,10 +63,11 @@
 
     .page { max-width: 1120px; margin: 0 auto; padding: clamp(16px, 4vw, 48px) clamp(12px, 3vw, 32px) 40px; }
 
-    /* ───── Grid ───── */
-    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 16px); }
+    /* ───── Grid: 6 columns → products take 2 each, research 3 each ───── */
+    .grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 16px); }
     .card {
       position: relative; overflow: hidden;
+      grid-column: span 2;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: clamp(20px, 2.4vw, 28px);
@@ -79,47 +75,30 @@
       transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
     }
     a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -26px var(--shadow); }
-    .span2 { grid-column: span 2; }
+    .full { grid-column: 1 / -1; }
+    .half { grid-column: span 3; }
 
     /* ───── Intro ───── */
-    .intro { display: flex; flex-direction: column; justify-content: space-between; gap: 36px; min-height: 420px; }
-    .avatar {
-      width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
-      background: linear-gradient(135deg, #e9e9e6, #d4d4d0);
-      display: grid; place-items: center;
-      font: 600 20px "Inter Tight", Inter, sans-serif; letter-spacing: -0.02em; color: #555;
-    }
-    .intro h1 { font-size: clamp(40px, 5.2vw, 64px); margin-top: 28px; }
-    .intro h1 span { color: var(--muted); }
-    .intro p { color: var(--muted); font-size: 18px; max-width: 36ch; margin-top: 16px; }
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-    .chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 999px; background: var(--chip); font-size: 14px; font-weight: 500; white-space: nowrap; }
-
-    /* ───── Now: Catch App ───── */
-    .now { container-type: inline-size; background: var(--catch); color: #fff; border: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 420px; }
-    .now::before { content: ""; position: absolute; width: 520px; height: 520px; right: -180px; top: -200px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .28), transparent); transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
-    .now::after { content: ""; position: absolute; width: 420px; height: 420px; left: -160px; bottom: -220px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .18), transparent); }
-    .now:hover::before { transform: translate(-40px, 30px); }
-    .now > * { position: relative; z-index: 1; }
-    .now .chip { background: rgba(255, 255, 255, .18); color: #fff; align-self: flex-start; }
-    .now .live { width: 8px; height: 8px; border-radius: 50%; background: #fff; position: relative; }
-    .now .live::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #fff; animation: ping 2s ease-out infinite; }
-    @keyframes ping { to { transform: scale(2.6); opacity: 0; } }
-    .now h2 { font-size: clamp(56px, 7.4vw, 100px); font-size: clamp(52px, 19cqi, 120px); letter-spacing: -0.05em; white-space: nowrap; }
-    .now p { font-size: 18px; max-width: 32ch; color: rgba(255, 255, 255, .92); margin-top: 12px; }
-    .now .go { position: absolute; top: clamp(20px, 2.4vw, 28px); right: clamp(20px, 2.4vw, 28px); background: rgba(255, 255, 255, .18); color: #fff; }
+    .intro { display: flex; align-items: center; gap: clamp(20px, 3.5vw, 40px); padding: clamp(24px, 4vw, 44px); }
+    .avatar { width: clamp(96px, 11vw, 132px); height: clamp(96px, 11vw, 132px); border-radius: 50%; object-fit: cover; flex: none; }
+    .intro h1 { font-size: clamp(40px, 5.4vw, 64px); }
+    .intro p { color: var(--muted); font-size: clamp(17px, 1.5vw, 19px); max-width: 58ch; margin-top: 14px; }
 
     /* ───── Projects ───── */
-    .proj { --c: var(--text); display: flex; flex-direction: column; min-height: 260px; }
+    .proj { --c: var(--text); display: flex; flex-direction: column; min-height: 250px; }
     .mono {
       width: 52px; height: 52px; border-radius: 16px; flex: none;
       background: var(--c); color: #fff;
       display: grid; place-items: center;
       font: 700 21px "Inter Tight", Inter, sans-serif; letter-spacing: -0.03em;
     }
-    .proj .tag { margin-top: auto; padding-top: 24px; font-size: 13px; color: var(--muted); }
+    .proj .tag { margin-top: auto; padding-top: 24px; font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
     .proj h3 { font-size: clamp(22px, 2.2vw, 26px); margin-top: 6px; }
     .proj p { color: var(--muted); font-size: 15px; margin-top: 8px; }
+    .live { width: 7px; height: 7px; border-radius: 50%; background: var(--catch); position: relative; flex: none; }
+    .live::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: ping 2s ease-out infinite; }
+    @keyframes ping { to { transform: scale(2.6); opacity: 0; } }
+    .proj .tag.now { color: var(--text); font-weight: 500; }
     .go {
       position: absolute; top: clamp(20px, 2.4vw, 28px); right: clamp(20px, 2.4vw, 28px);
       width: 36px; height: 36px; border-radius: 50%;
@@ -131,11 +110,11 @@
     .proj:hover .go { background: var(--c); color: #fff; }
 
     /* ───── Contact ───── */
-    .contact, .social { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-height: 220px; }
+    .contact, .social { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-height: 180px; }
     .contact { container-type: inline-size; background: var(--text); color: var(--bg); border: 0; }
     .contact .sub, .social .sub { color: var(--muted); font-size: 14px; }
     .contact .sub { color: color-mix(in srgb, var(--bg) 60%, var(--text)); }
-    .contact .big { font-size: clamp(20px, 3vw, 36px); font-size: clamp(18px, 7.6cqi, 40px); white-space: nowrap; }
+    .contact .big { font-size: clamp(18px, 2vw, 26px); font-size: clamp(18px, 7.4cqi, 30px); white-space: nowrap; }
     .social .big { font-size: clamp(22px, 2.4vw, 28px); }
 
     footer { margin-top: 28px; padding: 0 8px; color: var(--muted); font-size: 14px; }
@@ -157,6 +136,7 @@
     @keyframes fade { from { opacity: 0; } }
     .dlg { padding: clamp(24px, 4vw, 36px); display: grid; gap: 16px; }
     .dlg-top { display: flex; align-items: center; gap: 14px; }
+    .dlg-top .mono { width: 44px; height: 44px; font-size: 18px; border-radius: 14px; }
     .dlg-top .tag { color: var(--muted); font-size: 14px; }
     .close {
       margin-left: auto; width: 36px; height: 36px; border-radius: 50%; border: 0;
@@ -171,10 +151,13 @@
     /* ───── Responsive ───── */
     @media (max-width: 900px) {
       .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .intro, .now, .contact { grid-column: span 2; }
-      .intro, .now { min-height: 0; }
-      .now { min-height: 340px; }
+      .card, .half { grid-column: span 1; }
+      .full, .contact, .wide-sm { grid-column: 1 / -1; }
       .social, .contact { min-height: 0; }
+    }
+    @media (max-width: 560px) {
+      .intro { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .avatar { width: 88px; height: 88px; }
     }
     @media (max-width: 480px) {
       .proj { min-height: 210px; }
@@ -184,7 +167,6 @@
     }
     @media (max-width: 340px) {
       .grid { grid-template-columns: 1fr; }
-      .intro, .now, .contact { grid-column: auto; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -196,44 +178,28 @@
   <main class="page">
     <div class="grid">
       <!-- Intro -->
-      <div class="card intro span2">
+      <header class="card intro full">
+        <img class="avatar" src="images/me.jpg" alt="Jose Miguel L" width="132" height="132">
         <div>
-          <img class="avatar" src="images/me.jpg" alt="Jose Miguel Luna" width="72" height="72">
-          <h1 class="display">Jose Miguel Luna</h1>
-          <p>I build software products. Currently working on Catch App, for keeping up with friends. Other projects span fintech, civic tech, travel and AI interpretability.</p>
+          <h1 class="display">Jose Miguel L</h1>
+          <p>Currently building AI products at Apple. In my spare time, I build more products/do research to solve problems I stumble upon that I find interesting, important and/or fun.</p>
         </div>
-        <div class="chips" aria-label="Areas">
-          <span class="chip" role="img" aria-label="Mexico and US">🇲🇽 ⇄ 🇺🇸</span>
-          <span class="chip">Fintech</span>
-          <span class="chip">Civic tech</span>
-          <span class="chip">AI interpretability</span>
-        </div>
-      </div>
+      </header>
 
-      <!-- Now building: Catch App -->
-      <a class="card now span2" href="#catch" data-dialog="catch">
-        <span class="chip"><span class="live" aria-hidden="true"></span>Now building</span>
+      <!-- Products -->
+      <a class="card proj" href="#catch" data-dialog="catch" style="--c: var(--catch)">
+        <span class="mono" aria-hidden="true">C</span>
         <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
-        <div>
-          <h2 class="display">Catch App</h2>
-          <p>An app for keeping track of your friendships.</p>
-        </div>
+        <span class="tag now"><span class="live" aria-hidden="true"></span>Now building</span>
+        <h3 class="display">Catch App</h3>
+        <p>Keep track of your friendships</p>
       </a>
-
-      <!-- Projects -->
       <a class="card proj" href="#adulting" data-dialog="adulting" style="--c: var(--adulting)">
         <span class="mono" aria-hidden="true">A</span>
         <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
         <span class="tag">Fintech</span>
         <h3 class="display">Adulting</h3>
         <p>Personal finance for Mexico–US lives</p>
-      </a>
-      <a class="card proj" href="#azetta" data-dialog="azetta" style="--c: var(--azetta)">
-        <span class="mono" aria-hidden="true">Az</span>
-        <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
-        <span class="tag">Non-profit</span>
-        <h3 class="display">Azetta AI</h3>
-        <p>AI interpretability research</p>
       </a>
       <a class="card proj" href="#moonshine" data-dialog="moonshine" style="--c: var(--moonshine)">
         <span class="mono" aria-hidden="true">M</span>
@@ -242,17 +208,25 @@
         <h3 class="display">Moonshine of the Seas</h3>
         <p>Gamified trip planning</p>
       </a>
-      <a class="card proj" href="#sivico" data-dialog="sivico" style="--c: var(--sivico)">
+
+      <!-- Research -->
+      <a class="card proj half" href="#azetta" data-dialog="azetta" style="--c: var(--azetta)">
+        <span class="mono" aria-hidden="true">Az</span>
+        <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
+        <span class="tag">Research</span>
+        <h3 class="display">Azetta AI</h3>
+        <p>AI Interpretability</p>
+      </a>
+      <a class="card proj half wide-sm" href="#slay" data-dialog="slay" style="--c: var(--slay)">
         <span class="mono" aria-hidden="true">S</span>
         <span class="go" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 11 3M5 3h6v6"/></svg></span>
-        <span class="tag">Civic tech</span>
-        <h3 class="display">SIVICO</h3>
-        <p>Citizen engagement app</p>
+        <span class="tag">Research paper</span>
+        <h3 class="display">SLAY</h3>
+        <p>Efficient attention</p>
       </a>
 
       <!-- Contact -->
-      <!-- ✏️ EDIT: your email (href and text) -->
-      <a class="card contact span2" href="mailto:jmlunamugica@mac.com">
+      <a class="card contact" href="mailto:jmlunamugica@mac.com">
         <span class="sub">Email</span>
         <span class="big display">jmlunamugica@mac.com ↗</span>
       </a>
@@ -266,24 +240,23 @@
       </a>
     </div>
 
-    <footer>© <span id="year">2026</span> Jose Miguel Luna</footer>
+    <footer>© <span id="year">2026</span> Jose Miguel L</footer>
   </main>
 
   <!-- ───── Project details (open when a card is clicked) ───── -->
   <dialog id="catch" style="--c: var(--catch)" aria-labelledby="catch-t">
     <div class="dlg">
-      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">C</span><span class="tag">Now building</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <div class="dlg-top"><span class="mono" aria-hidden="true">C</span><span class="tag">Now building</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
       <h2 class="display" id="catch-t">Catch App</h2>
       <p>An app for keeping track of your friendships and staying in touch with people. In development.</p>
       <!-- ✏️ IMAGE: <img class="shot" src="images/catch.png" alt="Catch App screenshot"> -->
-      <!-- ✏️ EDIT: your email, or a waitlist link -->
       <a class="cta" href="mailto:jmlunamugica@mac.com?subject=Catch%20App">Get early access <span aria-hidden="true">→</span></a>
     </div>
   </dialog>
 
   <dialog id="adulting" style="--c: var(--adulting)" aria-labelledby="adulting-t">
     <div class="dlg">
-      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">A</span><span class="tag">Fintech</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <div class="dlg-top"><span class="mono" aria-hidden="true">A</span><span class="tag">Fintech</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
       <h2 class="display" id="adulting-t">Adulting</h2>
       <p>A personal finance app for people whose finances span Mexico and the US.</p>
       <!-- ✏️ IMAGE: <img class="shot" src="images/adulting.png" alt="Adulting app screenshot"> -->
@@ -291,19 +264,9 @@
     </div>
   </dialog>
 
-  <dialog id="azetta" style="--c: var(--azetta)" aria-labelledby="azetta-t">
-    <div class="dlg">
-      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">Az</span><span class="tag">Non-profit</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
-      <h2 class="display" id="azetta-t">Azetta AI</h2>
-      <p>A non-profit working on AI interpretability, the study of what happens inside AI models.</p>
-      <!-- ✏️ IMAGE: <img class="shot" src="images/azetta.png" alt="Azetta AI"> -->
-      <!-- ✏️ LINK:  <a class="cta" href="https://…">Visit Azetta AI <span aria-hidden="true">→</span></a> -->
-    </div>
-  </dialog>
-
   <dialog id="moonshine" style="--c: var(--moonshine)" aria-labelledby="moonshine-t">
     <div class="dlg">
-      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">M</span><span class="tag">Travel</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <div class="dlg-top"><span class="mono" aria-hidden="true">M</span><span class="tag">Travel</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
       <h2 class="display" id="moonshine-t">Moonshine of the Seas</h2>
       <p>A gamified trip-planning app where every participant owns part of the planning. The pilot is a family trip themed as a cruise: each person runs a different activity, earns points for planning and attending activities, and cashes them in at the end.</p>
       <!-- ✏️ IMAGE: <img class="shot" src="images/moonshine.png" alt="Moonshine of the Seas screenshot"> -->
@@ -311,13 +274,22 @@
     </div>
   </dialog>
 
-  <dialog id="sivico" style="--c: var(--sivico)" aria-labelledby="sivico-t">
+  <dialog id="azetta" style="--c: var(--azetta)" aria-labelledby="azetta-t">
     <div class="dlg">
-      <div class="dlg-top"><span class="mono" aria-hidden="true" style="width:44px;height:44px;font-size:18px;border-radius:14px">S</span><span class="tag">Civic tech</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
-      <h2 class="display" id="sivico-t">SIVICO</h2>
-      <p>A citizen engagement app.</p>
-      <!-- ✏️ IMAGE: <img class="shot" src="images/sivico.png" alt="SIVICO app screenshot"> -->
-      <!-- ✏️ LINK:  <a class="cta" href="https://…">Visit SIVICO <span aria-hidden="true">→</span></a> -->
+      <div class="dlg-top"><span class="mono" aria-hidden="true">Az</span><span class="tag">Research</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <h2 class="display" id="azetta-t">Azetta AI</h2>
+      <p>Research on AI interpretability: understanding what happens inside AI models.</p>
+      <!-- ✏️ IMAGE: <img class="shot" src="images/azetta.png" alt="Azetta AI"> -->
+      <!-- ✏️ LINK:  <a class="cta" href="https://…" target="_blank" rel="noopener">Visit Azetta AI <span aria-hidden="true">↗</span></a> -->
+    </div>
+  </dialog>
+
+  <dialog id="slay" style="--c: var(--slay)" aria-labelledby="slay-t">
+    <div class="dlg">
+      <div class="dlg-top"><span class="mono" aria-hidden="true">S</span><span class="tag">Research paper</span><button class="close" type="button" aria-label="Close"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l8 8M11 3l-8 8"/></svg></button></div>
+      <h2 class="display" id="slay-t">SLAY</h2>
+      <p>A research paper on efficient attention.</p>
+      <!-- ✏️ LINK:  <a class="cta" href="https://…" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a> -->
     </div>
   </dialog>
 

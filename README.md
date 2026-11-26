@@ -1,6 +1,6 @@
-# Jose Miguel Luna: personal website
+# Jose Miguel L: personal website
 
-A one-page "bento" layout: an intro card, a big **Now building: Catch App** card, one card each for Adulting, Azetta AI, Moonshine of the Seas and SIVICO, plus contact cards. Clicking a project card opens a panel with more detail. Links like `/#adulting` open that panel directly.
+A one-page "bento" layout: a full-width intro (photo, name, description), a row of product cards (Catch App, Adulting, Moonshine of the Seas), a row of research cards (Azetta AI, SLAY), and contact cards. Clicking a project card opens a panel with more detail. Links like `/#adulting` open that panel directly.
 
 It's one file (`index.html`) with no build step. The only external dependency is Google Fonts (Inter, Inter Tight). Dark mode follows the system setting.
 
@@ -16,7 +16,7 @@ Search `index.html` for `✏️`:
 
 - [ ] **Screenshots and links**: each project's panel (the `<dialog>` elements at the bottom) has commented-out `<img class="shot">` and link lines. Put images in `images/` and uncomment them.
 
-Project colors are the `--catch`, `--adulting`, `--azetta`, `--moonshine` and `--sivico` tokens at the top of the `<style>` block.
+Project colors are the `--catch`, `--adulting`, `--moonshine`, `--azetta` and `--slay` tokens at the top of the `<style>` block.
 
 ## Deploy
 
