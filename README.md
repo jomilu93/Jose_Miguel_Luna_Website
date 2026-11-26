@@ -20,5 +20,5 @@ Project colors are the `--catch`, `--adulting`, `--azetta`, `--moonshine` and `-
 
 ## Deploy
 
-- **GitHub Pages**: Settings → Pages → *Deploy from a branch* → pick the branch and `/ (root)`.
+- **GitHub Pages**: Settings → Pages → *Deploy from a branch* → `main` and `/ (root)`. The site is published at https://jomilu93.github.io/Jose_Miguel_Luna_Website/ and updates within a minute or two of each push to `main`. `.nojekyll` tells Pages to serve the files as-is.
 - **Vercel / Netlify / Cloudflare Pages**: import the repo, with no build command and the root as the output directory.
